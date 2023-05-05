@@ -11,13 +11,11 @@ object StringUtils {
     fun String.abbreviateMiddle(middle: String, length: Int): String =
         StringUtils.abbreviateMiddle(this, middle, length)
 
-    fun String.appendIfMissing(
-        suffix: CharSequence,
-        ignoreCase: Boolean = false,
-        vararg suffixes: CharSequence
-    ): String =
-        if (ignoreCase) StringUtils.appendIfMissingIgnoreCase(this, suffix, *suffixes)
-        else StringUtils.appendIfMissing(this, suffix, *suffixes)
+    fun String.appendIfMissingIgnoreCase(suffix: CharSequence, vararg suffixes: CharSequence): String =
+        StringUtils.appendIfMissingIgnoreCase(this, suffix, *suffixes)
+
+    fun String.appendIfMissing(suffix: CharSequence, vararg suffixes: CharSequence): String =
+        StringUtils.appendIfMissing(this, suffix, *suffixes)
 
     fun String.capitalize(): String = StringUtils.capitalize(this)
     fun String.center(size: Int, padChar: Char = ' '): String = StringUtils.center(this, size, padChar)
@@ -34,9 +32,11 @@ object StringUtils {
     fun CharSequence.containsIgnoreCase(searchStr: CharSequence): Boolean =
         StringUtils.containsIgnoreCase(this, searchStr)
 
-    fun CharSequence.containsNone(vararg searchChars: Char): Boolean = StringUtils.containsAny(this, *searchChars)
-    fun CharSequence.containsNone(invalidChars: String): Boolean = StringUtils.containsAny(this, invalidChars)
+    fun CharSequence.containsNone(vararg searchChars: Char): Boolean = StringUtils.containsNone(this, *searchChars)
+    fun CharSequence.containsNone(invalidChars: String): Boolean = StringUtils.containsNone(this, invalidChars)
     fun CharSequence.containsOnly(vararg valid: Char): Boolean = StringUtils.containsOnly(this, *valid)
     fun CharSequence.containsOnly(validChars: String): Boolean = StringUtils.containsOnly(this, validChars)
     fun CharSequence.containsWhitespace(): Boolean = StringUtils.containsWhitespace(this)
+    fun CharSequence.countMatches(ch: Char): Int = StringUtils.countMatches(this, ch)
+    fun CharSequence.countMatches(sub: CharSequence): Int = StringUtils.countMatches(this, sub)
 }
